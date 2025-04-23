@@ -51,4 +51,7 @@ jobs:
           pack build ${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }} \
             --path ./build \
             --env BP_JVM_VERSION=17 \
-            --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }} --publish
+            --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }}
+
+      - name: docker push
+        run: docker push ${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
