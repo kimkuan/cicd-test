@@ -40,5 +40,5 @@ jobs:
       - name: docker build with pack cli
         run: |
           pack build ${{ matrix.image-name }} \
-            --path . \
+            --path ./build \
             --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }} 
