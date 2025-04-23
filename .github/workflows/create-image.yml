@@ -44,4 +44,4 @@ jobs:
           pack build ${{ matrix.image-name }} \
             --path ./build \
             --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }} \
-            --env BP_JVM_VERSION=${{ matrix.java-version }} \
+            --env BP_JVM_VERSION=${{ matrix.java-version }}
