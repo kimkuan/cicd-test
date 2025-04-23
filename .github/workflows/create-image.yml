@@ -27,7 +27,7 @@ jobs:
           java-version: ${{ matrix.java-version }}
 
       - name: Get tags
-        run: echo ::set-output name=TAG::$(echo ${GITHUB_REF/refs\/tags\//})
+        run: echo "TAG=$(echo ${GITHUB_REF##*/} | awk -F':' '{print $2}')" >> $GITHUB_ENV
         id: get_tag
 
 #      - name: Setup Paketo Cli
@@ -39,9 +39,16 @@ jobs:
         run: ./gradlew clean build
         shell: bash
 
+      - name: docker login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: docker build with pack cli
         run: |
-          pack build ${{ matrix.image-name }} \
+          pack build ${{ secrets.DOCKERHUB_TOKEN }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }} \
             --path ./build \
             --env BP_JVM_VERSION=17 \
             --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }} \
+            --publish
