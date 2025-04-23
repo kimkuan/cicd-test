@@ -1,0 +1,44 @@
+name: create-image
+
+on:
+  push:
+    tags:
+      - 'image-test-**'
+
+jobs:
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: macOS-runner
+    strategy:
+      matrix:
+        image-name: [ cicd-test ]
+        app-name: [ cicd-test ]
+        java-version: [17]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: ${{ matrix.java-version }}
+
+      - name: Get tags
+        run: echo ::set-output name=TAG::$(echo ${GITHUB_REF/refs\/tags\//})
+        id: get_tag
+
+      - name: Setup Paketo Cli
+        uses: buildpacks/github-actions/setup-pack@v5.0.0
+
+      - name: gradle build # 애플리케이션 빌드를 수행합니다.
+        run: ./gradlew clean build
+        shell: bash
+
+      - name: docker build with pack cli
+        run: |
+          pack build ${{ matrix.image-name }} \
+            --path . \
+            --cache type=build;format=volume;name=pack-cache-${{ matrix.image-name }} 
