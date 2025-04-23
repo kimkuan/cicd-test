@@ -30,11 +30,10 @@ jobs:
         run: echo ::set-output name=TAG::$(echo ${GITHUB_REF/refs\/tags\//})
         id: get_tag
 
-      - name: Setup Paketo Cli
-        uses: buildpacks/github-actions/setup-pack@v5.0.0
-        with:
-          pack-version: '0.37.0'
-
+#      - name: Setup Paketo Cli
+#        uses: buildpacks/github-actions/setup-pack@v5.0.0
+#        with:
+#          pack-version: '0.37.0'
 
       - name: gradle build # 애플리케이션 빌드를 수행합니다.
         run: ./gradlew clean build
