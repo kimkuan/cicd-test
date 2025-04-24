@@ -29,3 +29,21 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.named('bootBuildImage') {
+    builder = 'paketobuildpacks/builder-jammy-base'
+
+    environment["BP_JVM_VERSION"] = "17"
+    environment["BPE_APPEND_JAVA_TOOL_OPTIONS"] = "-XX:+HeapDumpOnOutOfMemoryError"
+
+    buildCache {
+        volume {
+            name = "cache-${rootProject.name}.build"
+        }
+    }
+    launchCache {
+        volume {
+            name = "cache-${rootProject.name}.launch"
+        }
+    }
+}
