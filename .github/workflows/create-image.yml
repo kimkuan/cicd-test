@@ -32,7 +32,11 @@ jobs:
         id: get_tag
 
       - name: gradle build # 애플리케이션 빌드를 수행합니다.
-        run: ./gradlew clean bootBuildImage --imageName ${{ matrix.image-name }} --info
+        run: ./gradlew clean build --imageName ${{ matrix.image-name }} --info
+        shell: bash
+
+      - name: docker build
+        run: docker build -t ${{ matrix.image-name }} .
         shell: bash
 
       - name: docker login
@@ -40,6 +44,7 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
 
       - name: docker tag
         run: docker tag ${{ matrix.image-name }} ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
