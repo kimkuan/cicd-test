@@ -32,7 +32,7 @@ jobs:
         id: get_tag
 
       - name: gradle build # 애플리케이션 빌드를 수행합니다.
-        run: ./gradlew clean bootBuildImage
+        run: ./gradlew clean bootBuildImage --imageName ${{ matrix.image-name }}
         shell: bash
 
       - name: docker login
