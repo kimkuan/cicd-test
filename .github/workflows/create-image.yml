@@ -40,7 +40,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       - name: gradle build # 애플리케이션 빌드를 수행합니다.
-        run: ./gradlew clean bootBuildImage --imageName ${{ matrix.image-name }}
+        run: ./gradlew clean bootBuildImage --imageName ${{ matrix.image-name }} --build-cache
         shell: bash
 
       - name: docker login
