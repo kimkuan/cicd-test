@@ -11,8 +11,8 @@ jobs:
     runs-on: macOS-runner
     strategy:
       matrix:
-        image-name: [ cicd-test ]
-        app-name: [ cicd-test ]
+        image-name: [ cicd-test-no-cache ]
+        app-name: [ cicd-test-no-cache ]
         java-version: [17]
 
     steps:
