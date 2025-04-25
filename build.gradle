@@ -40,17 +40,17 @@ tasks.named('bootBuildImage') {
 
     buildWorkspace {
         bind {
-            source = "/tmp/cache-${rootProject.name}.work"
+            source = "/tmp/cache-${rootProject.name}-test.work"
         }
     }
     buildCache {
         bind {
-            source = "/tmp/cache-${rootProject.name}.build"
+            source = "/tmp/cache-${rootProject.name}-test.build"
         }
     }
     launchCache {
         bind {
-            source = "/tmp/cache-${rootProject.name}.launch"
+            source = "/tmp/cache-${rootProject.name}-test.launch"
         }
     }
 }
