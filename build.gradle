@@ -40,13 +40,13 @@ tasks.named('bootBuildImage') {
     environment["BPE_APPEND_JAVA_TOOL_OPTIONS"] = "-XX:+HeapDumpOnOutOfMemoryError"
 
     buildCache {
-        bind {
-            source = "/tmp/cache-${rootProject.name}-test.build"
+        volume {
+            name = "cache-${rootProject.name}.build"
         }
     }
     launchCache {
-        bind {
-            source = "/tmp/cache-${rootProject.name}-test.launch"
+        volume {
+            name = "cache-${rootProject.name}.launch"
         }
     }
 }
