@@ -7,6 +7,11 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+ext {
+    shedLockVersion = "5.3.0"
+}
+
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -26,15 +31,18 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation("net.javacrumbs.shedlock:shedlock-provider-redis-spring:$shedLockVersion")
+    implementation("net.javacrumbs.shedlock:shedlock-spring:$shedLockVersion")
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base'
-
-    environment["BP_JVM_VERSION"] = "17"
-    environment["BPE_APPEND_JAVA_TOOL_OPTIONS"] = "-XX:+HeapDumpOnOutOfMemoryError"
-}
+//tasks.named('bootBuildImage') {
+//    builder = 'paketobuildpacks/builder-jammy-base'
+//
+//    environment["BP_JVM_VERSION"] = "17"
+//    environment["BPE_APPEND_JAVA_TOOL_OPTIONS"] = "-XX:+HeapDumpOnOutOfMemoryError"
+//}
