@@ -39,14 +39,19 @@ tasks.named('bootBuildImage') {
 
     imagePlatform = "linux/arm64"
 
+    buildWorkspace {
+        bind {
+            source = "/tmp/cache-${rootProject.name}-test.work"
+        }
+    }
     buildCache {
-        volume {
-            name = "cache-${rootProject.name}.build"
+        bind {
+            source = "/tmp/cache-${rootProject.name}-test.build"
         }
     }
     launchCache {
-        volume {
-            name = "cache-${rootProject.name}.launch"
+        bind {
+            source = "/tmp/cache-${rootProject.name}-test.launch"
         }
     }
 }
