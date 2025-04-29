@@ -50,7 +50,7 @@ jobs:
         run: |
           pack build ${{ matrix.image-name }} \
             --path ./build \
-            --env BP_JVM_VERSION=17 \
+            --env BP_JVM_VERSION=17
 #            --cache-image ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest \
 #            --publish
 
