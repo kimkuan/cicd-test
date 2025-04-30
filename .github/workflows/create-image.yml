@@ -42,7 +42,7 @@ jobs:
         uses: maxnowack/local-cache@v2
         with:
           path: |
-            ~/build-cache
+            ~/actions-runner/build-cache
           key: ${{ runner.os }}-docker-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       - name: Get tags
