@@ -41,12 +41,12 @@ tasks.named('bootBuildImage') {
 
     buildCache {
         bind {
-            source = "/tmp/build-cache/cache-${rootProject.name}-test.build"
+            source = "/root/build-cache/cache-${rootProject.name}-test.build"
         }
     }
     launchCache {
         bind {
-            source = "/tmp/build-cache/cache-${rootProject.name}-test.launch"
+            source = "/root/build-cache/cache-${rootProject.name}-test.launch"
         }
     }
 }
