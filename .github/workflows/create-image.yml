@@ -51,7 +51,7 @@ jobs:
           pack build ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }} \
             --path ./build \
             --env BP_JVM_VERSION=17 \
-            --builder paketobuildpacks/builder-jammy-java-tiny \
+            --builder paketobuildpacks/builder-jammy-base \
             --cache-image ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest \
             --publish
 
