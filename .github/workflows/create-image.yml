@@ -26,6 +26,14 @@ jobs:
           distribution: 'corretto'
           java-version: ${{ matrix.java-version }}
 
+      - name: Setup local-cache
+        uses: maxnowack/local-cache@v2
+        with:
+           path: |
+             ~/.gradle/caches
+             ~/.gradle/wrapper
+           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
       - name: Get tags
         run: echo ::set-output name=TAG::$(echo ${GITHUB_REF/refs\/tags\//})
         shell: bash
