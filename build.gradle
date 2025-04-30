@@ -39,6 +39,11 @@ tasks.named('bootBuildImage') {
 
     imagePlatform = "linux/arm64"
 
+    buildWorkspace {
+        bind {
+            source = "/root/actions-runner/arm64/_work/cicd-test/build-cache/cache-${rootProject.name}-test.work"
+        }
+    }
     buildCache {
         bind {
             source = "/root/actions-runner/arm64/_work/cicd-test/build-cache/cache-${rootProject.name}-test.build"
