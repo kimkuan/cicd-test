@@ -41,12 +41,12 @@ tasks.named('bootBuildImage') {
 
     buildCache {
         bind {
-            source = "/tmp/build-cache/cache-${rootProject.name}-test.build"
+            source = "/root/actions-runner/arm64/_work/cicd-test/build-cache/cache-${rootProject.name}-test.build"
         }
     }
     launchCache {
         bind {
-            source = "/tmp/build-cache/cache-${rootProject.name}-test.launch"
+            source = "/root/actions-runner/arm64/_work/cicd-test/build-cache/cache-${rootProject.name}-test.launch"
         }
     }
 }
