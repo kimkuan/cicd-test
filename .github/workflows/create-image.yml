@@ -55,8 +55,8 @@ jobs:
             --cache-image ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest \
             --publish
 
-      - name: docker tag
-        run: docker tag ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
-
-      - name: docker push
-        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
+#      - name: docker tag
+#        run: docker tag ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
+#
+#      - name: docker push
+#        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
