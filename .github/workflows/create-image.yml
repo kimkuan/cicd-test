@@ -59,4 +59,4 @@ jobs:
         run: docker tag ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
 
       - name: docker push
-        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:latest
+        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.image-name }}:${{ steps.get_tag.outputs.TAG }}
