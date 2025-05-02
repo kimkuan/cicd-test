@@ -26,10 +26,6 @@ jobs:
           distribution: 'corretto'
           java-version: ${{ matrix.java-version }}
 
-      - name: Check Home directory
-        run: echo $HOME
-        shell: bash
-
       - name: Setup Gradle local-cache
         uses: maxnowack/local-cache@v2
         with:

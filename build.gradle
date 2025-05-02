@@ -39,14 +39,16 @@ tasks.named('bootBuildImage') {
 
     imagePlatform = "linux/arm64"
 
+    def homeDirectory = System.getProperty("user.home")
+
     buildCache {
         bind {
-            source = "/root/actions-runner/_work/cicd-test/build-cache/cache-${rootProject.name}-test.build"
+            source = "${homeDirectory}/actions-runner/_work/cicd-test/build-cache/cache-${rootProject.name}-test.build"
         }
     }
     launchCache {
         bind {
-            source = "/root/actions-runner/_work/cicd-test/build-cache/cache-${rootProject.name}-test.launch"
+            source = "${homeDirectory}/actions-runner/_work/cicd-test/build-cache/cache-${rootProject.name}-test.launch"
         }
     }
 }
