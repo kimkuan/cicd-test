@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/')
-    runs-on: Linux-OS
+    runs-on: Mac-OS
     strategy:
       matrix:
         image-name: [ cicd-test ]
